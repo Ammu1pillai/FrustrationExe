@@ -158,17 +158,14 @@
         }
 
         function exitGame() {
-            showPopup("We are not letting you go so easily buddy", 3000, () => {
+            // Show the pop-up message
+            showPopup("We are not letting you go so easily buddy", 3000); // Pop-up will show for 3 seconds
+
+            // Redirect to games_display.html after the pop-up duration
+            setTimeout(() => {
                 window.location.href = "games_display.html";
-            });
+            }, 3000); // 3000 milliseconds = 3 seconds
         }
     </script>
 </body>
 </html>
-           
-        
-
-     
-
-        
-               
