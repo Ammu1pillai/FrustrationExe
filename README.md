@@ -70,9 +70,9 @@ FrustrationExe is a pranking game installation website designed to trick users i
    ```
 6. Access the website at `http://localhost:8000/`.
 
-## Contribution
-Feel free to contribute by submitting issues or pull requests. Make sure to follow best practices and maintain code readability.
+## Made by: 
+1.Soya RF - Frontend 
+2.Sneha Vijayan - Frontend
+3.Anjita Pillai - Fronntend, Backend
 
-## License
-This project is for entertainment purposes only and does not distribute any actual game files. Licensed under the MIT License.
 
