@@ -124,14 +124,13 @@
             }
         });
 
-        function showPopup(message, duration, callback) {
+        function showPopup(message, duration) {
             let popup = document.getElementById("popup");
             popup.innerText = message;
             popup.style.display = "block";
 
             setTimeout(() => {
                 popup.style.display = "none";
-                if (callback) callback();
             }, duration);
         }
 
@@ -152,15 +151,10 @@
             });
 
             // Show the pop-up message
-            showPopup("Bro, get some sleep tata", 3000, () => {
-                // Attempt to close the tab
-                try {
-                    window.close(); // Close the browser tab
-                } catch (error) {
-                    console.error("Failed to close the tab:", error);
-                    alert("This tab cannot be closed automatically. Please close it manually.");
-                }
-            });
+            showPopup("Bro, get some sleep tata", 3000); // Pop-up will show for 3 seconds
+
+            // Redirect to the YouTube link immediately
+            window.location.href = "https://youtu.be/xvFZjo5PgG0?si=6uVcTD-LlwMOSYCT";
         }
 
         function exitGame() {
@@ -171,3 +165,10 @@
     </script>
 </body>
 </html>
+           
+        
+
+     
+
+        
+               
