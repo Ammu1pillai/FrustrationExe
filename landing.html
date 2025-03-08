@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Game Installer</title>
+  <style>
+    /* General Styles */
+    body {
+      font-family: 'Georgia', serif;
+      background-color: #4B0082; /* Purple */
+      color: #AF8D5A;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Title Section with Background Image */
+    .title-section {
+      height: 100vh;
+      background: url('frust2.jpg') no-repeat center center/cover;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    /* Shadow Box */
+    .shadow-box {
+      background: rgba(0, 0, 0, 0.7);
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.7);
+      max-width: 80%;
+    }
+
+    .shadow-box h1 {
+      font-size: 3rem;
+      color: #FFD700; /* Gold */
+      margin: 0;
+    }
+
+    .shadow-box p {
+      font-size: 1.5rem;
+      color: #FFF;
+      margin-top: 10px;
+    }
+
+    /* Sections with Increased Scroll Spacing */
+    .section {
+      text-align: center;
+      padding: 100px 50px;
+    }
+
+    /* Download Section */
+    .download-button {
+      background-color: #AF8D5A; /* Golden Brown */
+      color: #4B0082; /* Purple */
+      padding: 20px 40px;
+      font-size: 1.5rem;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .download-button:hover {
+      transform: scale(1.1);
+      box-shadow: 8px 8px 20px rgba(0, 0, 0, 0.7);
+    }
+
+    /* Progress Bar */
+    .progress-bar {
+      width: 50%;
+      height: 20px;
+      background-color: #333;
+      border-radius: 5px;
+      margin: 20px auto;
+      overflow: hidden;
+      display: none;
+      position: relative;
+    }
+
+    .progress {
+      width: 0%;
+      height: 100%;
+      background-color: #AF8D5A;
+      border-radius: 5px;
+      transition: width 0.5s;
+    }
+
+    .progress-text {
+      position: absolute;
+      width: 100%;
+      text-align: left;
+      color: white;
+      font-weight: bold;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    /* Game Requirements */
+    .game-requirements {
+      background: rgba(0, 0, 0, 0.3);
+      text-align: center;
+      padding: 20px;
+      border: 2px solid #FFD700; /* Golden border */
+      border-radius: 10px;
+      box-shadow: 0 0 15px #FFD700; /* Glowing effect */
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .game-requirements h2 {
+      font-family: 'Orbitron', sans-serif; /* Futuristic font */
+      font-size: 2rem;
+      color: #FFD700; /* Gold */
+    }
+
+    .game-requirements p {
+      font-family: 'Orbitron', sans-serif; /* Futuristic font */
+      font-size: 1.2rem;
+      color: #FFF;
+      margin: 10px 0;
+    }
+
+    /* Reviews, Help, and No Turning Back in One Window */
+    .info-box {
+      background: rgba(0, 0, 0, 0.3);
+      padding: 30px;
+      margin: 50px auto;
+      max-width: 800px;
+      border-radius: 10px;
+      text-align: center;
+    }
+
+    .review-box {
+      background: rgba(0, 0, 0, 0.7);
+      padding: 20px;
+      margin: 20px auto;
+      max-width: 600px;
+      border-radius: 10px;
+    }
+
+    .help-text {
+      display: none;
+      font-size: 1.5rem;
+      color: #AF8D5A;
+      margin-top: 20px;
+    }
+
+    .warning-text {
+      font-size: 1.5rem;
+      color: red;
+      font-weight: bold;
+      margin-top: 30px;
+    }
+  </style>
+  <!-- Import Orbitron font from Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Title Section -->
+  <div class="title-section">
+    <div class="shadow-box">
+      <h1>Welcome to the Ultimate Game Installer!</h1>
+      <p>Get ready to download and play the most mind-blowing experience of your life!</p>
+    </div>
+  </div>
+
+  <!-- Download Section -->
+  <div class="section">
+    <button class="download-button" id="downloadButton">Download Now</button>
+    <div class="progress-bar" id="progressBar">
+      <div class="progress" id="progress"></div>
+      <span class="progress-text" id="progressText">0%</span>
+    </div>
+  </div>
+
+  <!-- Game Requirements -->
+  <div class="section game-requirements">
+    <h2>Game Requirements</h2>
+    <p>CPU: Quantum i9 Extreme</p>
+    <p>RAM: 64GB of Rage</p>
+    <p>Storage: 1TB (to store your broken dreams)</p>
+  </div>
+
+  <!-- Reviews, Help, and No Turning Back in One Window -->
+  <div class="info-box">
+    <h2>Reviews</h2>
+    <div class="review-box">
+      <p>⭐⭐⭐⭐⭐ "This game changed my life... for the worse!" - Gamer</p>
+    </div>
+    <div class="review-box">
+      <p>⭐⭐⭐⭐⭐ "My keyboard and mouse are now broken, thanks!" - Angry User</p>
+    </div>
+    <div class="review-box">
+      <p>⭐⭐⭐⭐⭐ "Best rage-inducing experience ever!" - Laughing Player</p>
+    </div>
+
+    <h2>Need Help?</h2>
+    <button id="helpButton">Get Help</button>
+    <p><span id="helpText" class="help-text">No help 🚫😂</span></p>
+
+    <p class="warning-text">No Turning Back</p>
+  </div>
+
+  <script>
+    // Prevent the user from leaving the site
+    window.addEventListener('beforeunload', (event) => {
+      event.preventDefault();
+      event.returnValue = ''; // Required for Chrome
+    });
+
+    // Progress Bar Logic
+    const downloadButton = document.getElementById('downloadButton');
+    const progressBar = document.getElementById('progressBar');
+    const progress = document.getElementById('progress');
+    const progressText = document.getElementById('progressText');
+
+    downloadButton.addEventListener('click', () => {
+      progressBar.style.display = 'block';
+      let percentage = 0;
+      const interval = setInterval(() => {
+        if (percentage < 99) {
+          percentage++;
+          progress.style.width = percentage + "%";
+          progressText.innerText = percentage + "%";
+        } else {
+          clearInterval(interval); // Stop at 99%
+
+          // Redirect to signup.html after 5 seconds
+          setTimeout(() => {
+            window.location.href = "signup.html";
+          }, 5000); // 5 seconds delay
+        }
+      }, 50);
+    });
+
+    // Help Button Logic
+    const helpButton = document.getElementById('helpButton');
+    const helpText = document.getElementById('helpText');
+
+    helpButton.addEventListener('click', () => {
+      helpText.style.display = "block";
+    });
+  </script>
+</body>
+</html>

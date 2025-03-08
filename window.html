@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Over, Bro</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Rubik+Doodle+Shadow&display=swap');
+
+        body {
+            font-family: 'Rubik Doodle Shadow', cursive;
+            background-color: #800080; /* Purple background */
+            color: #C6A76B; /* PMS 465 C */
+            text-align: center;
+            padding: 15px; /* Reduced padding */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between; /* Push content to top and bottom */
+            min-height: 100vh; /* Ensure body takes full viewport height */
+            margin: 0; /* Remove default margin */
+        }
+
+        h1 {
+            font-size: 36px;
+            margin-top: 15px; /* Reduced margin */
+            margin-bottom: 5px; /* Reduced margin */
+        }
+
+        p {
+            font-size: 20px;
+            margin-top: 10px; /* Reduced margin */
+            margin-bottom: 5px; /* Reduced margin */
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 50px; /* Reduced gap to bring buttons closer */
+            align-items: center;
+            margin-bottom: 15px; /* Reduced margin */
+        }
+
+        .button-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        button {
+            padding: 15px 30px;
+            font-size: 18px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 10px; /* Reduced space between image and button */
+        }
+
+        #try-again {
+            background-color: #5cb85c;
+            color: white;
+        }
+
+        #exit {
+            background-color: #d9534f;
+            color: white;
+        }
+
+        /* Image Styling */
+        .button-box img {
+            width: 150px; /* Fixed width for both images */
+            height: 150px; /* Fixed height for both images */
+            object-fit: cover; /* Ensure images maintain aspect ratio */
+            border-radius: 10px;
+        }
+
+        /* Pop-up styling */
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            font-size: 18px;
+            width: 300px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Well, That Was...Something</h1>
+    <p>Either you're a gaming god, or you just rage quit. Either way, it's over.</p>
+
+    <!-- Button Container -->
+    <div class="button-container">
+        <!-- Try Again Button with Image -->
+        <div class="button-box">
+            <img src="try1.jpg" alt="Try Again Image">
+            <button id="try-again" onclick="tryAgain()">Try Again</button>
+        </div>
+
+        <!-- Exit Button with Image -->
+        <div class="button-box">
+            <img src="exit1.jpg" alt="Exit Image">
+            <button id="exit" onclick="exitGame()">Exit</button>
+        </div>
+    </div>
+
+    <!-- Pop-up Messages -->
+    <div id="popup" class="popup"></div>
+
+    <script>
+        // Prevent the user from leaving the site
+        let allowLeave = false; // Flag to control whether the user can leave
+
+        window.addEventListener('beforeunload', (event) => {
+            if (!allowLeave) {
+                event.preventDefault();
+                event.returnValue = ''; // Required for Chrome
+            }
+        });
+
+        function showPopup(message, duration, callback) {
+            let popup = document.getElementById("popup");
+            popup.innerText = message;
+            popup.style.display = "block";
+
+            setTimeout(() => {
+                popup.style.display = "none";
+                if (callback) callback();
+            }, duration);
+        }
+
+        function tryAgain() {
+            // Allow the user to leave
+            allowLeave = true;
+
+            // Stop the server (if applicable)
+            fetch('/stop-server', {
+                method: 'GET',
+            })
+            .then(response => response.text())
+            .then(data => {
+                console.log(data); // Log server response
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+
+            // Show the pop-up message
+            showPopup("Bro, get some sleep tata", 3000, () => {
+                // Attempt to close the tab
+                try {
+                    window.close(); // Close the browser tab
+                } catch (error) {
+                    console.error("Failed to close the tab:", error);
+                    alert("This tab cannot be closed automatically. Please close it manually.");
+                }
+            });
+        }
+
+        function exitGame() {
+            showPopup("We are not letting you go so easily buddy", 3000, () => {
+                window.location.href = "games_display.html";
+            });
+        }
+    </script>
+</body>
+</html>
